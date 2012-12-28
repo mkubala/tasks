@@ -1,0 +1,27 @@
+@(title: String)(content: Html)(implicit implicitAssets: Html)
+
+<!DOCTYPE html>
+<html ng-app>
+	<head>
+		<title>@title</title>
+		<link rel="shortcut icon" type="image/png" href="@routes.Assets.at("images/favicon.png")">
+		
+		@implicitAssets
+	</head>
+	<body>
+		<div class="navbar navbar-inverse navbar-fixed-top">
+			<div class="navbar-inner">
+				<div class="container">
+					<div class="row">
+						<div class="span12">
+							<a class="brand" href="#">Tasks</a>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+
+		@content
+
+	</body>
+</html>

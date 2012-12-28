@@ -1,0 +1,57 @@
+@()(implicit implicitAssets: Html)
+
+@main("Tasks list") {
+
+	<style>
+		.task-label.done-true {
+			text-decoration: line-through;
+			color: #bbb;
+		}
+	</style>
+
+	<div class="container" style="margin-top: 40px;" ng-controller="TaskController">
+    	<div class="row">
+    		<div class="span8">
+    			<form ng-submit="archive()">
+    				<h4>
+	    				<div class="row">
+	    					<div class="span6">
+    							{{undoneCount}} ({{tasks.length}}) tasks
+    						</div>
+    						<div class="span2">
+    							<input class="btn btn-danger" type="submit" value="Archive done" />
+    						</div>
+	    				</div>
+	    			</h4>
+    			</form>
+			    <table class="table table-striped">
+		    		<tr ng-repeat="task in tasks">
+		    			<td class="span1">
+		    				<input type="checkbox" ng-model="task.done" ng-click="updateTask(task)" />
+		    			</td>
+		    			<td class="span6">
+		    				<span class="task-label done-{{task.done}}">{{task.label}}</span>
+		    			</td>
+		    			<td class="span1">
+			    			<form ng-submit="delTask(task)">
+			    				<input class="btn btn-danger" type="submit" value="Delete" />
+			    			</form>
+		    			</td>
+		    		</tr>
+			    </table>
+			</div>
+    		<div class="span4">
+    			<div class="affix">
+					<h3>Create new task</h3>
+					<form ng-submit="addTask()">
+						<div class="input-append">
+							<input type="text" ng-model="taskLabel" size="30" placeholder="Type task label.." />
+							<input class="btn btn-success" type="submit" value="Add" />
+						</div>
+						<span class="label label-important" ng-show="taskLabelIsBlank">Required non-blank value</span>
+					</form>
+				</div>
+    		</div>
+	    </div>
+    </div>
+}
